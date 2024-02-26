@@ -1,0 +1,25 @@
+name: Deploy to IPFS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Website
+      run: npm run build # If your project needs a build step
+
+    - name: Upload to Pinata
+      run: node "C:\Users\HP\my-pinata-uploader\myPinataUploader.js" # Replace with path to your upload script
+      env:
+        PINATA_API_KEY: ${{ ddd441b5e4e41f39b1af}}
+        PINATA_SECRET_API_KEY: ${{ 12e3058a954387311028743e95e529356f1729daf9c9c2f2ada3d993780fde52}
